@@ -1,0 +1,9 @@
+# Ignore Python bytecode cache
+__pycache__/
+**/__pycache__/
+
+# Ignore virtual environment folder
+vibeprompt-env/
+
+# Ignore Jupyter notebooks
+*.ipynb
