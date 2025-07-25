@@ -7,3 +7,7 @@ vibeprompt-env/
 
 # Ignore Jupyter notebooks
 *.ipynb
+
+# Ignore packages folders
+dist/
+vibeprompt.egg-info/

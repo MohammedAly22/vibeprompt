@@ -18,6 +18,9 @@ Usage:
 Classes:
     - GeminiProvider: Concrete LLM provider for Google's Gemini models.
 """
+import warnings
+
+warnings.filterwarnings("ignore")
 
 from typing import List
 from langchain_google_genai import ChatGoogleGenerativeAI

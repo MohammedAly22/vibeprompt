@@ -125,25 +125,22 @@ class PromptStyler:
 
     def __init__(
         self,
-        style: StyleType = "simple", 
-        audience: Optional[AudienceType] = None,
         provider: Optional[ProviderType] = "cohere", 
         model: Optional[ModelType] = None, 
         api_key: Optional[str] = None, 
         enable_safety: bool = True, 
-        verbose: bool = True
+        verbose: bool = False,
+        **config
     ) -> None:
         """
         Initialize a PromptStyler instance with selected options.
 
         Args:
-            - style (StyleType): The transformation style to apply (default: "simple").
-            - audience (Optional[AudienceType]): Optional audience target.
             - provider (Optional[ProviderType]): LLM provider to use (default: "cohere").
             - model (Optional[ModelType]): Optional specific model name.
             - api_key (Optional[str]): API key for provider authentication.
             - enable_safety (bool): Enable prompt/content safety checks. Default: True.
-            - verbose (bool): Enable logging and CLI display. Default: True.
+            - verbose (bool): Enable logging and CLI display. Default: False.
         """
 
         self.verbose = verbose
@@ -155,26 +152,21 @@ class PromptStyler:
             logger.setLevel(logging.WARNING)  
 
         logger.info(
-            f"🎨 Initializing PromptStyler with style={Fore.CYAN + style} {Style.RESET_ALL}, provider={Fore.CYAN + provider}" + Style.RESET_ALL
+            f"🎨 Initializing PromptStyler with provider=`{Fore.CYAN + provider}`" + Style.RESET_ALL
         )
 
-        self.style_name = style
-        self.audience_name = audience
         self.model_name = model
         self.provider_name = provider
         self.api_key = api_key
         self.enable_safety = enable_safety
-
-        # Load transformation modules
-        self.style = load_style(style)
-        self.audience = load_audience(audience) if audience else None
  
         # Initialize LLM
         self.llm = LLMProviderFactory.create_provider(
             provider_name=provider,
             model_name=self.model_name,
             api_key=self.api_key,
-            verbose=self.verbose
+            verbose=self.verbose,
+            **config
         )
 
         # Initialize safety checker
@@ -187,7 +179,7 @@ class PromptStyler:
 
         logger.info(Fore.GREEN +"🧙🏼‍♂️ PromptStyler initialized successfully!" + Style.RESET_ALL)
 
-    def transform(self, prompt: str) -> str:
+    def transform(self, prompt: str, style: StyleType = "simple", audience: Optional[AudienceType] = None) -> str:
         """
         Transform a prompt with the selected style, audience, and safety constraints.
 
@@ -196,6 +188,8 @@ class PromptStyler:
 
         Args:
             - prompt (str): The raw input prompt to transform.
+            - style (StyleType): The transformation style to apply (default: "simple").
+            - audience (Optional[AudienceType]): Optional audience target.
 
         Returns:
             - str: The fully transformed and validated prompt string.
@@ -207,7 +201,23 @@ class PromptStyler:
 
         if not prompt or not prompt.strip():
             raise ValueError(Fore.RED +"❌ Prompt cannot be empty" + Style.RESET_ALL)
- 
+        
+        self.style_name = style
+        self.audience_name = audience
+
+        # Load transformation modules
+        self.style = load_style(style)
+        self.audience = load_audience(audience) if audience else None
+        
+        if self.audience:
+            logger.info(
+                f"🎨 Configured PromptStyler with style=`{Fore.CYAN + style}` {Style.RESET_ALL}, audience=`{Fore.CYAN + audience}`" + Style.RESET_ALL
+            )
+        else:
+            logger.info(
+                f"🎨 Configured PromptStyler with style={Fore.CYAN + style} {Style.RESET_ALL}"
+            )
+
         prompt = prompt.strip()
         logger.info(Fore.CYAN + f"✨ Transforming prompt: {prompt[:30]}..." + Style.RESET_ALL)
 
@@ -232,14 +242,13 @@ class PromptStyler:
             if self.safety_checker and not self.safety_checker.is_safe(styled_prompt):
                 raise ValueError(Fore.RED + "❌ Generated content failed safety checks"+ Style.RESET_ALL)
             
-            # if self.verbose:
-            print(f"\n{Fore.LIGHTWHITE_EX}{'=' * 61}")
-            print(f"{Fore.LIGHTWHITE_EX}📝 Original:" + Style.RESET_ALL)
-            print(f"{Fore.WHITE}{prompt.strip()}" + Style.RESET_ALL)
-            print(f"\n{Fore.LIGHTWHITE_EX}✨ Transformed (style: {self.style_name}" + 
+            logger.info(f"\n{Fore.LIGHTWHITE_EX}{'=' * 61}")
+            logger.info(f"{Fore.LIGHTWHITE_EX}📝 Original:" + Style.RESET_ALL)
+            logger.info(f"{Fore.WHITE}{prompt.strip()}" + Style.RESET_ALL)
+            logger.info(f"\n{Fore.LIGHTWHITE_EX}✨ Transformed (style: {self.style_name}" + 
             (f" ➡️ audience: {self.audience_name}" if self.audience_name else "") + "):" + Style.RESET_ALL)
-            print(f"{Fore.CYAN}{styled_prompt.strip()}\n" + Style.RESET_ALL)
-            print(Fore.LIGHTGREEN_EX + f"🎉 Transformation completed successfully!" + Style.RESET_ALL)
+            logger.info(f"{Fore.CYAN}{styled_prompt.strip()}\n" + Style.RESET_ALL)
+            logger.info(Fore.LIGHTGREEN_EX + f"🎉 Transformation completed successfully!" + Style.RESET_ALL)
 
             return styled_prompt.strip()
         

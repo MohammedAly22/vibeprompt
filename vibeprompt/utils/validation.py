@@ -192,13 +192,13 @@ class Validator:
         
         # Log why validation is needed
         if not is_validated:
-            logger.info(f"{Fore.LIGHTYELLOW_EX}🔍 API key for `{provider_name}` not validated yet{Style.RESET_ALL}")
+            logger.info(f"{Fore.YELLOW}🔍 API key for `{provider_name}` not validated yet{Style.RESET_ALL}")
         elif stored_key_hash != current_key_hash:
-            logger.info(f"{Fore.LIGHTYELLOW_EX}🔄 API key for `{provider_name}` has changed, re-validation required{Style.RESET_ALL}")
+            logger.info(f"{Fore.YELLOW}🔄 API key for `{provider_name}` has changed, re-validation required{Style.RESET_ALL}")
         
         # Perform validation
         try:
-            logger.info(f"{Fore.LIGHTYELLOW_EX}🔑 Validating API key for `{provider_name}`...{Style.RESET_ALL}")
+            logger.info(f"{Fore.YELLOW}🔑 Validating API key for `{provider_name}`...{Style.RESET_ALL}")
             logger.info(f"{Fore.CYAN}🧪 Making test call to `{provider_name}` API...{Style.RESET_ALL}")
             
             # Temporarily set the API key in provider for testing

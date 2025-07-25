@@ -71,7 +71,7 @@ class LLMProviderFactory:
         provider_name: str,
         api_key: str,
         model_name: Optional[str] = None,
-        verbose: bool = True,
+        verbose: bool = False,
         **config
     ) -> BaseChatModel:
         """
@@ -85,11 +85,11 @@ class LLMProviderFactory:
             - provider_name (str): Name of the provider (e.g., "openai", "cohere").
             - api_key (str): The API key for authentication.
             - model_name (Optional[str]): Optional model to use. Defaults to provider's default.
-            - verbose (bool): Whether to log detailed progress output. Defaults to True.
+            - verbose (bool): Whether to log detailed progress output. Defaults to False.
             - **config: Additional config options (e.g., temperature, max_tokens).
 
         Returns:
-            - LLM: A configured LangChain LLM instance ready for use.
+            - BaseChatModel: A configured LangChain LLM instance ready for use.
 
         Raises:
             - ValueError: If an unsupported provider is specified.

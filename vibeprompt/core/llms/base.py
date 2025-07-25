@@ -66,14 +66,14 @@ class BaseLLMProvider(ABC):
         - _llm_instance (Optional[BaseChatModel]): The cached LLM instance (created lazily).
     """
     
-    def __init__(self, model_name: Optional[str] = None, api_key: Optional[str] = None, verbose: bool = True, **kwargs):
+    def __init__(self, model_name: Optional[str] = None, api_key: Optional[str] = None, verbose: bool = False, **kwargs):
         """
         Initialize the provider with optional model name and API key.
 
         Args:
             - model_name (Optional[str]): Name of the LLM to use. If None, uses default model.
             - api_key (Optional[str]): API key for authenticating with the provider.
-            - verbose (bool): Whether to enable detailed logging (default: True).
+            - verbose (bool): Whether to enable detailed logging (default: False).
             - **kwargs: Additional configuration options passed to the provider.
 
         Logs:
@@ -96,7 +96,7 @@ class BaseLLMProvider(ABC):
         self._llm_instance = None
         
         if not model_name:
-            logger.info(f"{Fore.LIGHTYELLOW_EX}⚙️ Using default model: `{self.model_name}`{Style.RESET_ALL}")
+            logger.info(f"{Fore.YELLOW}⚙️ Using default model: `{self.model_name}`{Style.RESET_ALL}")
         else:
             logger.info(f"{Fore.CYAN}🎯 Using specified model: `{self.model_name}`{Style.RESET_ALL}")
         
@@ -172,6 +172,6 @@ class BaseLLMProvider(ABC):
             validator.validate_provider(self)
             self._llm_instance = self.create_llm_instance()
             logger.info(f"{Fore.GREEN}✨ LLM instance created successfully and ready to run!{Style.RESET_ALL}")
-            print("=" * 61)
+            logger.info("=" * 61)
             
         return self._llm_instance
