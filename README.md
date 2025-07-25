@@ -384,7 +384,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Documentation**: [Full documentation](https://github.com/MohammedAly22/vibeprompt/blob/main/README.md)
 - **Issues**: [GitHub Issues](https://github.com/MohammedAly22/vibeprompt/issues)
-- **Email**: [mohammeda.ebrahim22@gmail.com](mohammeda.ebrahim22@gmail.com)
+- **Email**: [mohammeda.ebrahim22@gmail.com](mailto:mohammeda.ebrahim22@gmail.com)
 
 ## 🚀 Roadmap
 - [⏳] Support for more styles and audiences
