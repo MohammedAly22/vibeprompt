@@ -69,11 +69,11 @@ class LLMProviderFactory:
     def create_provider(
         cls,
         provider_name: str,
-        api_key: str,
+        api_key: str = None,
         model_name: Optional[str] = None,
         verbose: bool = False,
         **config
-    ) -> BaseChatModel:
+    ) -> BaseLLMProvider:
         """
         Create and return a configured LLM instance from the specified provider.
 
@@ -95,8 +95,7 @@ class LLMProviderFactory:
             - ValueError: If an unsupported provider is specified.
         """
 
-        cls.verbose = verbose
-        if cls.verbose:
+        if verbose:
             logger.setLevel(logging.INFO)
         else:
             # Show only final errors or warnings
@@ -132,22 +131,28 @@ class LLMProviderFactory:
             **config
         )
         
-        return provider_instance.get_llm()
+        return provider_instance
     
     @classmethod
-    def get_available_providers(cls) -> list:
+    def get_available_providers(cls, verbose: bool = False) -> list:
         """
         Return a list of available provider names.
 
         Returns:
             - list: Supported LLM providers (e.g., ["openai", "cohere"]).
         """
+        if verbose:
+            logger.setLevel(logging.INFO)
+        else:
+            # Show only final errors or warnings
+            logger.setLevel(logging.WARNING)
+        
         providers = list(cls._providers.keys())
         logger.info(f"{Fore.CYAN}📋 Available providers: {', '.join(providers)}{Style.RESET_ALL}")
         return providers
     
     @classmethod
-    def get_provider_models(cls, provider_name: str) -> list:
+    def get_provider_models(cls, provider_name: str, verbose: bool = False) -> list:
         """
         Return list of valid model names for the given provider.
 
@@ -160,6 +165,12 @@ class LLMProviderFactory:
         Raises:
             - ValueError: If the provider is not recognized.
         """
+        if verbose:
+            logger.setLevel(logging.INFO)
+        else:
+            # Show only final errors or warnings
+            logger.setLevel(logging.WARNING)
+
         logger.info(f"{Fore.CYAN}🔍 Fetching available models for '{provider_name}'...{Style.RESET_ALL}")
         
         provider_name_lower = provider_name.lower()

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vibeprompt"
-version = "0.1.4"
+version = "0.2.0"
 description = "Your words. Their way. Perform style and audience adaptation for your prompts."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -27,7 +27,8 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Scientific/Engineering :: Artificial Intelligence"]
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
 
 dependencies = [
     "aiohappyeyeballs==2.6.1",
@@ -111,7 +112,6 @@ dependencies = [
     "Pygments==2.19.2",
     "python-dateutil==2.9.0.post0",
     "python-dotenv==1.1.1",
-    # Removed "pywin32==311"
     "PyYAML==6.0.2",
     "pyzmq==27.0.0",
     "regex==2024.11.6",
@@ -136,7 +136,10 @@ dependencies = [
     "urllib3==2.5.0",
     "wcwidth==0.2.13",
     "yarl==1.20.1",
-    "zstandard==0.23.0"
+    "zstandard==0.23.0",
+    # CLI dependencies
+    "typer[all]>=0.9.0",
+    "rich>=13.0.0"
 ]
 
 [project.optional-dependencies]
@@ -147,12 +150,15 @@ Homepage = "https://github.com/mohammedaly22/vibeprompt"
 Documentation = "https://github.com/mohammedaly22/vibeprompt#readme"
 Source = "https://github.com/mohammedaly22/vibeprompt"
 
+[project.scripts]
+vibeprompt = "vibeprompt_cli.cli_main:app"
+
 [tool.setuptools]
 package-dir = {"" = "."}
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["vibeprompt*"]
+include = ["vibeprompt*", "vibeprompt_cli*"]
 
 [tool.setuptools.package-data]
 "vibeprompt" = ["py.typed"]

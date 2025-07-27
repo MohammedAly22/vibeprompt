@@ -11,3 +11,4 @@ vibeprompt-env/
 # Ignore packages folders
 dist/
 vibeprompt.egg-info/
+build/

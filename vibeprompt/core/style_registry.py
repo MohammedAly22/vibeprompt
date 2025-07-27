@@ -192,6 +192,7 @@ def load_audience(name: Optional[str]) -> Optional[Any]:
         )
     return _AUDIENCE_REGISTRY[name]()
 
+
 def _ensure_modules_loaded():
     """
     Lazily import all style and audience modules to trigger registration.

@@ -159,19 +159,21 @@ class PromptStyler:
         self.provider_name = provider
         self.api_key = api_key
         self.enable_safety = enable_safety
- 
+
         # Initialize LLM
-        self.llm = LLMProviderFactory.create_provider(
+        self.provider = LLMProviderFactory.create_provider(
             provider_name=provider,
             model_name=self.model_name,
             api_key=self.api_key,
             verbose=self.verbose,
             **config
         )
+        
+        self.llm = self.provider.get_llm()
 
         # Initialize safety checker
         self.safety_checker = SafetyChecker(llm=self.llm, verbose=self.verbose) if self.enable_safety else None
-        
+
         # Check if it's none, notify the user
         if not self.safety_checker:
             logger.info(Fore.LIGHTYELLOW_EX + "⚠️ Warning: The SafetyChecker is currently disabled. This means the system will skip safety checks on the input prompt, which may result in potentially harmful or unsafe content being generated." + Style.RESET_ALL)

@@ -84,6 +84,7 @@ class Validator:
         """
 
         self.verbose = verbose
+        
         if self.verbose:
             logger.setLevel(logging.INFO)
         else:
@@ -111,12 +112,11 @@ class Validator:
         
         valid_models = provider.get_valid_models()
         if provider.model_name not in valid_models:
-            if self.verbose:
-                error_msg = (
-                    f"Model '{provider.model_name}' is not valid for `{provider.get_provider_name()}`. "
-                    f"Valid models: {valid_models}"
-                )
-                logger.error(f"{Fore.RED}❌ Model validation failed: {error_msg}{Style.RESET_ALL}")
+            error_msg = (
+                f"Model '{provider.model_name}' is not valid for `{provider.get_provider_name()}`. "
+                f"Valid models: {valid_models}"
+            )
+            logger.error(f"{Fore.RED}❌ Model validation failed: {error_msg}{Style.RESET_ALL}")
             raise ValidationError(error_msg)
         
         logger.info(f"{Fore.GREEN}✅ Model `{provider.model_name}` is valid for `{provider.get_provider_name()}`{Style.RESET_ALL}")
