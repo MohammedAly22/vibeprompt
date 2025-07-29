@@ -417,7 +417,7 @@ def main(
 def version():
     """Show VibePrompt version."""
     display_header()
-    console.print("[cyan]VibePrompt CLI v0.2.1[/cyan]")
+    console.print("[cyan]VibePrompt CLI v0.2.4[/cyan]")
 
 
 if __name__ == "__main__":
