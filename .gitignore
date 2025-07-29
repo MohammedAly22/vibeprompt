@@ -3,7 +3,7 @@ __pycache__/
 **/__pycache__/
 
 # Ignore virtual environment folder
-vibeprompt-env/
+vibe-env/
 
 # Ignore Jupyter notebooks
 *.ipynb
