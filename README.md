@@ -1,17 +1,18 @@
 # 🦩VibePrompt: Your words. Their way
 
-![alt text](IMG_9905.PNG)
+![alt text](IMG_9907.PNG)
 
 A lightweight Python package for adapting prompts by **tone**, **style**, and **audience**. Built on top of **LangChain**, `VibePrompt` supports multiple LLM providers and enables structured, customizable prompt transformations for developers, writers, and researchers.
 
-[![PyPI version](https://badge.fury.io/py/vibeprompt.svg)](https://badge.fury.io/py/vibeprompt)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/MohammedAly22/vibeprompt)
+[![PyPI version](https://img.shields.io/badge/pypi-v0.2.1-blue)](https://pypi.org/project/vibeprompt/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🚀 Features
 
 - **Multi-Provider Support**: Works with `OpenAI`, `Cohere`, `Anthropic`, and `Google`
-- **Style Adaptation**: Transform prompts across **8** writing styles
+- **Style Adaptation**: Transform prompts across **+15** writing styles
 - **Audience Targeting**: Adapt content for different audiences and expertise levels
 - **Safety Checks**: Built-in content filtering and safety validation
 - **Flexible Configuration**: Environment variables or programmatic API key management
@@ -48,9 +49,8 @@ styler = PromptStyler(
 )
 
 # Transform your prompt
-original_prompt = "Explain machine learning to me"
 result = styler.transform(
-    prompt="What is machine learning?",
+    prompt="Explain machine learning to me",
     style="technical",
     audience="developers"
 )
@@ -67,7 +67,13 @@ print(result)
 #### Using Single Command
 
 ```bash
-vibeprompt transform "Explain machine learning to me" --style technical --audience developers --provider gemini --model gemini-2.0-flash --enable-safety --api-key your-gemini-api-key
+vibeprompt transform "Explain machine learning to me" \
+--style technical \
+--audience developers \
+--provider gemini \
+--model gemini-2.0-flash \
+--enable-safety 
+--api-key your-gemini-api-key
 ```
 
 #### Using Configuration First
@@ -80,32 +86,53 @@ vibeprompt transform "Explain machine learning to me" -- style technical --audie
 
 ## 🎨 Available Styles
 
-`VibePrompt` supports the following writing styles:
+`VibePrompt` supports the following writing styles (+15):
 
-| Style        | Description                            | Use Case                             |
-| ------------ | -------------------------------------- | ------------------------------------ |
-| `simple`     | Clear, basic, and easy to understand   | Beginners, general explanations      |
-| `assertive`  | Direct, confident, and firm            | Calls to action, decision-making     |
-| `formal`     | Polished, professional, and respectful | Business, official communication     |
-| `humorous`   | Light-hearted, witty, and entertaining | Social posts, casual marketing       |
-| `playful`    | Fun, whimsical, and imaginative        | Youth content, games, informal media |
-| `poetic`     | Lyrical, expressive, and artistic      | Creative writing, storytelling       |
-| `sequential` | Step-by-step, ordered, and logical     | Tutorials, instructions              |
-| `technical`  | Precise, detail-rich, and factual      | Engineering, manuals, documentation  |
+| Style           | Description                                        | Use Case                                            |
+| --------------- | -------------------------------------------------- | --------------------------------------------------- |
+| `academic`      | Evidence-based, structured, and citation-aware     | Research papers, academic writing                   |
+| `assertive`     | Direct, confident, and firm                        | Calls to action, decision-making                    |
+| `authoritative` | Commanding tone backed by expertise                | Policy documents, expert opinion pieces             |
+| `casual`        | Conversational, laid-back, and friendly            | Blog posts, internal team updates                   |
+| `creative`      | Original, imaginative, and artistic                | Fiction, branding, content ideation                 |
+| `diplomatic`    | Tactful, neutral, and conflict-averse              | Sensitive topics, cross-functional communication    |
+| `educational`   | Informative, structured for teaching               | Lessons, learning modules                           |
+| `empathic`      | Compassionate and emotionally resonant             | Mental health, customer care, support communication |
+| `formal`        | Polished, professional, and respectful             | Business reports, official correspondence           |
+| `friendly`      | Warm, supportive, and encouraging                  | Customer onboarding, FAQs, community management     |
+| `humorous`      | Light-hearted, witty, and entertaining             | Social media, casual marketing                      |
+| `minimalist`    | Concise, essential, and clean                      | UI copy, product descriptions                       |
+| `persuasive`    | Convincing and benefit-oriented                    | Sales copy, fundraising pitches                     |
+| `playful`       | Fun, whimsical, and imaginative                    | Youth content, informal branding                    |
+| `poetic`        | Lyrical, expressive, and metaphor-rich             | Creative writing, visual storytelling               |
+| `sequential`    | Ordered, step-by-step, and instructional           | Tutorials, how-to guides                            |
+| `simple`        | Clear, basic, and easy to understand               | Beginners, general explanations                     |
+| `storytelling`  | Narrative-driven, emotional, and character-focused | Brand stories, user testimonials                    |
+| `technical`     | Accurate, data-driven, and jargon-appropriate      | Documentation, engineering blogs                    |
+
 
 ## 👥 Available Audiences
 
-Target your content for specific audiences:
+Target your content for specific audiences (15):
 
-| Audience     | Description                 | Characteristics                           |
-| ------------ | --------------------------- | ----------------------------------------- |
-| `business`   | Business stakeholders       | ROI-focused, strategic perspective        |
-| `children`   | Young learners (8-12 years) | Simple words, fun examples                |
-| `developers` | Software developers         | Technical accuracy, code examples         |
-| `experts`    | Advanced understanding      | Technical depth, specialized terms        |
-| `general`    | Mixed/general audience      | Balanced complexity, broad appeal         |
-| `healthcare` | Medical professionals       | Clinical accuracy, professional standards |
-| `students`   | Academic learners           | Educational focus, structured learning    |
+| Audience        | Description                         | Characteristics                                       |
+| --------------- | ----------------------------------- | ----------------------------------------------------- |
+| `adults`        | General adult readers               | Mature tone, practical context                        |
+| `beginners`     | New learners in any domain          | Simple explanations, foundational concepts            |
+| `business`      | Business stakeholders               | Strategic focus, ROI, and market perspective          |
+| `children`      | Young learners (ages 8–12)          | Friendly tone, simple words, relatable examples       |
+| `developers`    | Software developers                 | Code samples, technical accuracy, precise language    |
+| `educators`     | Teachers, instructors               | Pedagogical structure, learning outcomes              |
+| `experts`       | Domain specialists                  | Advanced jargon, deep insights                        |
+| `general`       | General audience                    | Balanced tone, non-specialized                        |
+| `healthcare`    | Medical professionals               | Clinical tone, evidence-based terminology             |
+| `intermediates` | Mid-level learners                  | Building on basics, transitional explanations         |
+| `professionals` | Industry professionals              | Formal tone, work-related context                     |
+| `researchers`   | Scientific and academic researchers | Technical precision, citations, deep analysis         |
+| `seniors`       | Older adults                        | Clear, respectful, possibly slower-paced explanations |
+| `students`      | School or university learners       | Educational tone, focused on comprehension            |
+| `teenagers`     | Teen audience (ages 13–18)          | Casual, relevant, and age-appropriate language        |
+
 
 ## 🔌 Supported Providers
 
@@ -152,7 +179,6 @@ Target your content for specific audiences:
 
 - `gemini-2.0-flash` – Fast and efficient model for lightweight tasks (v2.0)
 - `gemini-2.0-flash-lite` – Ultra-light version of Flash 2.0 for minimal latency use cases
-- `gemini-2.0-pro` – Versatile general-purpose model with strong reasoning (v2.0)
 - `gemini-2.5-flash` – Improved speed and efficiency over Flash 2.0 (v2.5)
 - `gemini-2.5-flash-lite` – Slimmest and quickest Gemini model (v2.5)
 - `gemini-2.5-pro` – Latest flagship model with enhanced performance and reasoning capabilities
@@ -228,7 +254,7 @@ print(result)
 styler = PromptStyler(
     provider="cohere",           # Required: LLM provider
     api_key="your-key",          # API key (or use env var)
-    model="command",             # Model name (optional)
+    model="command-a-03-2025",   # Model name (optional)
     enable_safety=True,          # Enable safety checks
     verbose=True,                # Enable verbose logging
     temperature=0.7,             # Creativity level (0.0-1.0)

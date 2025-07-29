@@ -89,8 +89,5 @@ class OpenAIProvider(BaseLLMProvider):
         return ChatOpenAI(
             model=self.model_name,
             openai_api_key=self.api_key,
-            temperature=self.config.get('temperature', 0.7),
-            max_tokens=self.config.get('max_tokens', 1000),
-            **{k: v for k, v in self.config.items() 
-               if k not in ['temperature', 'max_tokens']}
+            **{k: v for k, v in self.config.items()}
         )

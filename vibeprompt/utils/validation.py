@@ -225,7 +225,7 @@ class Validator:
             else:
                 # Restore original API key if validation failed
                 provider.api_key = original_api_key
-                raise Exception("API test call returned empty response")
+                raise Exception("❌ API test call returned empty response")
                 
         except Exception as e:
             # Restore original API key if validation failed

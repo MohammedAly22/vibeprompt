@@ -242,13 +242,24 @@ def list_styles():
     table.add_column("Description", style="white")
     
     style_descriptions = {
-        "simple": "Clear, basic, and easy to understand",
+        "academic": "Evidence-based, structured, and citation-aware",
         "assertive": "Direct, confident, and firm",
+        "authoritative": "Commanding tone backed by expertise",
+        "casual": "Conversational, laid-back, and friendly",
+        "creative": "Original, imaginative, and artistic",
+        "diplomatic": "Tactful, neutral, and conflict-averse",
+        "educational": "Informative, structured for teaching",
+        "empathic": "Compassionate and emotionally resonant",
         "formal": "Polished, professional, and respectful",
+        "friendly": "Warm, supportive, and encouraging",
         "humorous": "Light-hearted, witty, and entertaining",
+        "minimalist": "Concise, essential, and clean",
+        "persuasive": "Convincing and benefit-oriented",
         "playful": "Fun, whimsical, and imaginative",
-        "poetic": "Lyrical, expressive, and artistic",
+        "poetic": "Lyrical, expressive, and metaphor-rich",
         "sequential": "Step-by-step, ordered, and logical",
+        "simple": "Clear, basic, and easy to understand",
+        "storytelling": "Narrative-driven, emotional, and character-focused",
         "technical": "Precise, detail-rich, and factual"
     }
     
@@ -278,13 +289,21 @@ def list_audiences():
     table.add_column("Description", style="white")
     
     audience_descriptions = {
+        "adults": "General adult readers - mature tone, practical context",
+        "beginners": "New learners in any domain - simple explanations, foundational concepts",
         "business": "Business stakeholders - ROI-focused, strategic perspective",
         "children": "Young learners (8-12 years) - simple words, fun examples",
         "developers": "Software developers - technical accuracy, code examples",
+        "educators": "Teachers, instructors - pedagogical structure, learning outcomes",
         "experts": "Advanced understanding - technical depth, specialized terms",
         "general": "Mixed/general audience - balanced complexity, broad appeal",
         "healthcare": "Medical professionals - clinical accuracy, professional standards",
-        "students": "Academic learners - educational focus, structured learning"
+        "intermediates": "Mid-level learners - building on basics, transitional explanations",
+        "professionals": "Industry professionals - formal tone, work-related context",
+        "researchers": "Scientific and academic researchers - technical precision, citations",
+        "seniors": "Older adults - clear, respectful, possibly slower-paced explanations",
+        "students": "Academic learners - educational focus, structured learning",
+        "teenagers": "Teen audience (13–18) - casual, relevant, age-appropriate language"
     }
     
     if isinstance(audiences, dict):
@@ -398,7 +417,7 @@ def main(
 def version():
     """Show VibePrompt version."""
     display_header()
-    console.print("[cyan]VibePrompt CLI v0.2.0[/cyan]")
+    console.print("[cyan]VibePrompt CLI v0.2.1[/cyan]")
 
 
 if __name__ == "__main__":

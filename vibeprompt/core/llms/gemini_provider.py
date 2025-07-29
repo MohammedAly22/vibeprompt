@@ -76,7 +76,6 @@ class GeminiProvider(BaseLLMProvider):
         return [
             "gemini-2.0-flash",
             "gemini-2.0-flash-lite",
-            "gemini-2.0-pro",
             "gemini-2.5-flash",
             "gemini-2.5-flash-lite",
             "gemini-2.5-pro",
@@ -95,11 +94,8 @@ class GeminiProvider(BaseLLMProvider):
         return ChatGoogleGenerativeAI(
             model=self.model_name,
             google_api_key=self.api_key,
-            temperature=self.config.get("temperature", 0.7),
-            max_output_tokens=self.config.get("max_tokens", 1000),
             **{
                 k: v
                 for k, v in self.config.items()
-                if k not in ["temperature", "max_tokens"]
             }
         )

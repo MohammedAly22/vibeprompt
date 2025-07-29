@@ -47,17 +47,36 @@ StyleType = Literal[
     "poetic",
     "sequential",
     "simple",
-    "technical"
+    "technical",
+    "academic",
+    "authoritative",
+    "casual",
+    "creative",
+    "diplomatic",
+    "educational",
+    "empathic",
+    "friendly",
+    "minimalist",
+    "persuasive",
+    "storytelling",
 ]
 
 AudienceType = Literal[
-    "business",
     "children",
-    "developers",
+    "teenagers",
+    "adults",
+    "beginners",
+    "intermediates",
     "experts",
-    "general",
-    "healthcare",
     "students",
+    "educators",
+    "seniors",
+    "developers",
+    "professionals",
+    "researchers",
+    "healthcare",
+    "general",
+    "business",
 ]
 
 ProviderType = Literal[
@@ -86,7 +105,6 @@ CohereModelType = Literal[
 GeminiModelType = Literal[
     "gemini-2.0-flash",
     "gemini-2.0-flash-lite",
-    "gemini-2.0-pro",
     "gemini-2.5-flash",
     "gemini-2.5-flash-lite",
     "gemini-2.5-pro",

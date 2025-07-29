@@ -204,19 +204,38 @@ def _ensure_modules_loaded():
     
     if not _STYLE_REGISTRY:
         # Import all modules to trigger registration
+        import vibeprompt.styles.academic
         import vibeprompt.styles.assertive
+        import vibeprompt.styles.authoritative
+        import vibeprompt.styles.casual
+        import vibeprompt.styles.creative
+        import vibeprompt.styles.diplomatic
+        import vibeprompt.styles.educational
+        import vibeprompt.styles.empathic
         import vibeprompt.styles.formal
+        import vibeprompt.styles.friendly
         import vibeprompt.styles.humorous
+        import vibeprompt.styles.minimalist
+        import vibeprompt.styles.persuasive
         import vibeprompt.styles.playful
         import vibeprompt.styles.poetic
         import vibeprompt.styles.sequential
         import vibeprompt.styles.simple
-        import vibeprompt.styles.technical
+        import vibeprompt.styles.storytelling
+        import vibeprompt.styles.technical 
 
+        import vibeprompt.audiences.adults
+        import vibeprompt.audiences.beginners
         import vibeprompt.audiences.business
         import vibeprompt.audiences.children
         import vibeprompt.audiences.developers
+        import vibeprompt.audiences.educators
         import vibeprompt.audiences.experts
         import vibeprompt.audiences.general
         import vibeprompt.audiences.healthcare
+        import vibeprompt.audiences.intermediates
+        import vibeprompt.audiences.professionals
+        import vibeprompt.audiences.researchers
+        import vibeprompt.audiences.seniors
         import vibeprompt.audiences.students
+        import vibeprompt.audiences.teenagers
